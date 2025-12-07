@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>デイリーミッションルーレット</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    button {
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f5f5f5;
+    }
+    button:hover {
+      background: #eaeaea;
+    }
+    #missions {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+    .mission-item {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mission-checkbox {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+    .mission-label {
+      flex: 1;
+      word-break: break-all;
+    }
+    .mission-label.done {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .date-info {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #555;
+    }
+    .progress-info {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #333;
+    }
+    .section {
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+    }
+    .form-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #all-missions {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 8px;
+    }
+    .all-missions-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px dashed #eee;
+      gap: 8px;
+    }
+    .mission-text {
+      flex: 1;
+      word-break: break-all;
+    }
+    .delete-btn {
+      font-size: 12px;
+      padding: 4px 8px;
+      background: #ffe5e5;
+      border-color: #ffcccc;
+    }
+    .delete-btn:hover {
+      background: #ffdddd;
+    }
+    .hint {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>デイリーミッション ルーレット</h1>
+
+  <p>
+    毎日 <strong>5個</strong> のミッションが出ます。<br>
+    <strong>3つ達成できたらその日はクリア！</strong>
+  </p>
+
+  <button id="generate-btn">今日のミッションを再抽選する</button>
+  <div class="date-info" id="date-info"></div>
+
+  <div class="section">
+    <h2>今日のお題</h2>
+    <ol id="missions"></ol>
+    <!-- 進捗表示用 -->
+    <div id="progress-info" class="progress-info"></div>
+  </div>
+
+  <div class="section">
+    <h2>お題リストの編集</h2>
+    <p>
+      ここでお題を追加・削除できます。<br>
+      リストはブラウザに保存されるので、次に開いたときも残ります。
+    </p>
+
+    <div class="form-row">
+      <input
+        type="text"
+        id="new-mission-input"
+        placeholder="例）腕立て伏せ20回／読書10分 など"
+      >
+      <button id="add-mission-btn">お題を追加</button>
+    </div>
+    <div class="hint">※ 空欄のまま追加はできません。</div>
+
+    <ul id="all-missions"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
